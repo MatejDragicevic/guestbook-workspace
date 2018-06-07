@@ -1,5 +1,6 @@
 package com.liferay.docs.guestbook.portlet.portlet;
 
+import com.liferay.docs.guestbook.model.Entry;
 import com.liferay.docs.guestbook.portlet.constants.GuestbookPortletKeys;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -8,12 +9,16 @@ import org.osgi.service.component.annotations.Component;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.Portlet;
+import javax.portlet.PortletException;
 import javax.portlet.PortletPreferences;
 import javax.portlet.ReadOnlyException;
+import javax.portlet.RenderRequest;
+import javax.portlet.RenderResponse;
 import javax.portlet.ValidatorException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -76,5 +81,32 @@ public class GuestbookPortlet extends MVCPortlet {
 			Logger.getLogger(GuestbookPortlet.class.getName()).log(
 					Level.SEVERE, null, ex);
 		}
+	}
+
+	@Override
+	public void render(RenderRequest renderRequest, RenderResponse renderResponse)
+			throws PortletException, IOException {
+
+		PortletPreferences prefs = renderRequest.getPreferences();
+		String[] guestbookEntries = prefs.getValues("guestbook-entries", new String[1]);
+
+		if (guestbookEntries[0] != null) {
+			List<Entry> entries = parseEntries(guestbookEntries);
+			renderRequest.setAttribute("entries", entries);
+		}
+
+		super.render(renderRequest, renderResponse);
+	}
+
+	private List<Entry> parseEntries(String[] guestbookEntries) {
+		List<Entry> entries = new ArrayList<Entry>();
+
+		for (String entry : guestbookEntries) {
+			String[] parts = entry.split("\\^", 2);
+			Entry gbEntry = new Entry(parts[0], parts[1]);
+			entries.add(gbEntry);
+		}
+
+		return entries;
 	}
 }
