@@ -1,26 +1,37 @@
-<%@ include file="../init.jsp" %>
+<%@include file="../init.jsp"%>
 
-<portlet:renderURL var="addEntryURL">
-    <portlet:param name="mvcPath" value="/edit_entry.jsp"></portlet:param>
-</portlet:renderURL>
+<%
+long guestbookId = Long.valueOf((Long) renderRequest
+        .getAttribute("guestbookId"));
+%>
 
-<jsp:useBean id="entries" class="java.util.ArrayList" scope="request"/>
+<aui:button-row cssClass="guestbook-buttons">
 
-<liferay-ui:search-container>
-    <liferay-ui:search-container-results results="<%= entries %>" />
+    <portlet:renderURL var="addEntryURL">
+        <portlet:param name="mvcPath" value="/guestbookwebportlet/edit_entry.jsp" />
+        <portlet:param name="guestbookId"
+            value="<%=String.valueOf(guestbookId)%>" />
+    </portlet:renderURL>
 
-    <liferay-ui:search-container-row
-        className="com.liferay.docs.guestbook.model.Entry"
-        modelVar="entry"
-    >
-        <liferay-ui:search-container-column-text property="message" />
+    <aui:button onClick="<%=addEntryURL.toString()%>" value="Add Entry"></aui:button>
 
-        <liferay-ui:search-container-column-text property="name" />
-    </liferay-ui:search-container-row>
-
-    <liferay-ui:search-iterator />
-</liferay-ui:search-container>
-
-<aui:button-row>
-    <aui:button onClick="<%= addEntryURL.toString() %>" value="Add Entry"></aui:button>
 </aui:button-row>
+
+<liferay-ui:search-container total="<%=EntryLocalServiceUtil.getEntriesCount()%>">
+<liferay-ui:search-container-results
+    results="<%=EntryLocalServiceUtil.getEntries(scopeGroupId.longValue(),
+                    guestbookId, searchContainer.getStart(),
+                    searchContainer.getEnd())%>" />
+
+<liferay-ui:search-container-row
+    className="com.liferay.docs.guestbook.model.Entry" modelVar="entry">
+
+    <liferay-ui:search-container-column-text property="message" />
+
+    <liferay-ui:search-container-column-text property="name" />
+
+</liferay-ui:search-container-row>
+
+<liferay-ui:search-iterator />
+
+</liferay-ui:search-container>
