@@ -63,7 +63,6 @@ public class GuestbookLocalServiceImpl extends GuestbookLocalServiceBaseImpl {
 
         Guestbook guestbook = guestbookPersistence.create(guestbookId);
 
-        guestbook.setUuid(serviceContext.getUuid());
         guestbook.setUserId(userId);
         guestbook.setGroupId(groupId);
         guestbook.setCompanyId(user.getCompanyId());

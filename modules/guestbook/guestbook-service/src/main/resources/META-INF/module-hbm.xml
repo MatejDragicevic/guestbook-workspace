@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping auto-import="false" default-lazy="false">
+	<import class="com.liferay.docs.guestbook.model.Entry" />
+	<import class="com.liferay.docs.guestbook.model.Guestbook" />
+	<class name="com.liferay.docs.guestbook.model.impl.EntryImpl" table="entry">
+		<id column="entryid" name="entryId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property column="groupid" name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property column="companyid" name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property column="userid" name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property column="username" name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property column="createdate" name="createDate" type="org.hibernate.type.TimestampType" />
+		<property column="modifieddate" name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="status" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property column="statusbyuserid" name="statusByUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property column="statusbyusername" name="statusByUserName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property column="statusdate" name="statusDate" type="org.hibernate.type.TimestampType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="email" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="message" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property column="guestbookid" name="guestbookId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+	<class name="com.liferay.docs.guestbook.model.impl.GuestbookImpl" table="guestbook">
+		<id column="guestbookid" name="guestbookId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property column="groupid" name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property column="companyid" name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property column="userid" name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property column="username" name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property column="createdate" name="createDate" type="org.hibernate.type.TimestampType" />
+		<property column="modifieddate" name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="status" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property column="statusbyuserid" name="statusByUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property column="statusbyusername" name="statusByUserName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property column="statusdate" name="statusDate" type="org.hibernate.type.TimestampType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+</hibernate-mapping>

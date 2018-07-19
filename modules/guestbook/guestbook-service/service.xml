@@ -4,74 +4,77 @@
 <service-builder auto-namespace-tables="true" package-path="com.liferay.docs.guestbook">
 	<author>liferay</author>
 	<namespace>GB</namespace>
-	<entity name="Guestbook" local-service="true" uuid="true">
+	<!--<entity data-source="sampleDataSource" local-service="true" name="Foo" remote-service="false" session-factory="sampleSessionFactory" table="foo" tx-manager="sampleTransactionManager uuid="true"">-->
+	<entity local-service="true"
+			name="Guestbook"
+			table="guestbook"
+			data-source="extDataSource"
+			uuid="false">
 
 		<!-- PK fields -->
 
-		<column name="guestbookId" primary="true" type="long" />
+		<column name="guestbookId" db-name="guestbookid" primary="true" type="long" />
 
 		<!-- Group instance -->
 
-		<column name="groupId" type="long" />
+		<column name="groupId" db-name="groupid" type="long" />
 
 		<!-- Audit fields -->
 
-		<column name="companyId" type="long" />
-		<column name="userId" type="long" />
-		<column name="userName" type="String" />
-		<column name="createDate" type="Date" />
-		<column name="modifiedDate" type="Date" />
+		<column name="companyId" db-name="companyid" type="long" />
+		<column name="userId" db-name="userid" type="long" />
+		<column name="userName" db-name="username" type="String" />
+		<column name="createDate" db-name="createdate" type="Date" />
+		<column name="modifiedDate" db-name="modifieddate" type="Date" />
 
 		<!-- Status fields -->
 
-		<column name="status" type="int" />
-		<column name="statusByUserId" type="long" />
-		<column name="statusByUserName" type="String" />
-		<column name="statusDate" type="Date" />
+		<column name="status" db-name="status" type="int" />
+		<column name="statusByUserId" db-name="statusbyuserid" type="long" />
+		<column name="statusByUserName" db-name="statusbyusername" type="String" />
+		<column name="statusDate" db-name="statusdate" type="Date" />
 
 		<!-- Other fields -->
 
-		<column name="name" type="String" />
+		<column name="name" db-name="name" type="String" />
 
-		<!-- Finder methods -->
-
-		<finder name="GroupId" return-type="Collection">
+		<finder name="GroupId" db-name="groupid" return-type="Collection">
 			<finder-column name="groupId" />
 		</finder>
 	</entity>
-	<entity name="Entry" local-service="true" uuid="true">
+	<entity local-service="true"
+			name="Entry"
+			table="entry"
+			data-source="extDataSource"
+			uuid="false">
 
 		<!-- PK fields -->
 
-		<column name="entryId" primary="true" type="long" />
+		<column name="entryId" db-name="entryid" primary="true" type="long" />
 
 		<!-- Group instance -->
 
-		<column name="groupId" type="long" />
+		<column name="groupId" db-name="groupid" type="long" />
 
 		<!-- Audit fields -->
 
-		<column name="companyId" type="long" />
-		<column name="userId" type="long" />
-		<column name="userName" type="String" />
-		<column name="createDate" type="Date" />
-		<column name="modifiedDate" type="Date" />
+		<column name="companyId" db-name="companyid" type="long" />
+		<column name="userId" db-name="userid" type="long" />
+		<column name="userName" db-name="username" type="String" />
+		<column name="createDate" db-name="createdate" type="Date" />
+		<column name="modifiedDate" db-name="modifieddate" type="Date" />
 
 		<!-- Status fields -->
 
-		<column name="status" type="int" />
-		<column name="statusByUserId" type="long" />
-		<column name="statusByUserName" type="String" />
-		<column name="statusDate" type="Date" />
+		<column name="status" db-name="status" type="int" />
+		<column name="statusByUserId" db-name="statusbyuserid" type="long" />
+		<column name="statusByUserName" db-name="statusbyusername" type="String" />
+		<column name="statusDate" db-name="statusdate" type="Date" />
 
-		<!-- Other fields -->
-
-		<column name="name" type="String" />
-		<column name="email" type="String" />
-		<column name="message" type="String" />
-		<column name="guestbookId" type="long" />
-
-		<!-- Finder methods -->
+		<column name="name" db-name="name" type="String" />
+		<column name="email" db-name="email" type="String" />
+		<column name="message" db-name="message" type="String" />
+		<column name="guestbookId" db-name="guestbookid" type="long" />
 
 		<finder name="G_G" return-type="Collection">
 			<finder-column name="groupId" />
