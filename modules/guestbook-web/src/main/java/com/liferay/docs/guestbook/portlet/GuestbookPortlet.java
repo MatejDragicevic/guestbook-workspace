@@ -1,8 +1,8 @@
-package com.liferay.docs.guestbook.portlet.portlet;
+package com.liferay.docs.guestbook.portlet;
 
 import com.liferay.docs.guestbook.model.Entry;
 import com.liferay.docs.guestbook.model.Guestbook;
-import com.liferay.docs.guestbook.portlet.constants.GuestbookPortletKeys;
+import com.liferay.docs.guestbook.constants.GuestbookPortletKeys;
 import com.liferay.docs.guestbook.service.EntryLocalService;
 import com.liferay.docs.guestbook.service.GuestbookLocalService;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -20,14 +20,9 @@ import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.Portlet;
 import javax.portlet.PortletException;
-import javax.portlet.PortletPreferences;
-import javax.portlet.ReadOnlyException;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
-import javax.portlet.ValidatorException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
